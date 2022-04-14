@@ -1,7 +1,7 @@
 # Niryo One Implementation
 
 # Steps to run this code
-1. git clone this directory into a workspace and catkin build
+1. git clone this directory into a workspace, go to the subdirectory on the same level of having the 'src' folder, and catkin build
 2. source the file devel/setup.bash of the workspace
 3. in 3 separate terminals, type in commands:
 	- roslaunch niryo_one_moveit_config medication.launch

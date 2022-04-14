@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+
+<!--
+    niryo_one.urdf.xacro
+    Copyright (C) 2019 Niryo
+    All rights reserved.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="niryo_one">
+
+  <!-- gazebo ros control -->
+  <gazebo>
+      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+	      <legacyModeNS>true</legacyModeNS>
+      </plugin>
+  </gazebo>
+
+  <!-- gazebo joint state publisher for all joints -->
+  <xacro:if value="$(arg standalone)">
+    <gazebo>
+      <plugin name="passive_joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
+        <jointName>joint_1, joint_2, joint_3, joint_4, joint_5, joint_6</jointName>
+        <updateRate>50.0</updateRate>
+        <alwaysOn>true</alwaysOn>
+      </plugin>
+    </gazebo>
+  </xacro:if>
+
+  <!-- preserve tool_link -->
+  <gazebo reference="tool_joint">
+    <provideFeedback>true</provideFeedback>
+    <disableFixedJointLumping>true</disableFixedJointLumping>
+  </gazebo>
+
+  <!-- hand_tool_joint -->
+  <gazebo reference="hand_tool_joint">
+    <disableFixedJointLumping>true</disableFixedJointLumping> 
+  </gazebo>
+
+  <!-- selfCollide -->
+  <gazebo reference="base_link">
+      <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="shoulder_link">
+      <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="arm_link">
+      <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="elbow_link">
+      <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="forearm_link">
+      <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="wrist_link">
+      <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="hand_link">
+      <selfCollide>true</selfCollide>
+  </gazebo>
+
+  <gazebo reference="mainsupport">
+    <selfCollide>False</selfCollide>
+  </gazebo>
+
+  <!-- material -->
+	<gazebo reference="mainsupport">
+	    <material>Gazebo/DarkGrey</material>
+	</gazebo>
+</robot>
